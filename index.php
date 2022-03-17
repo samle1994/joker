@@ -51,7 +51,7 @@
         // Chuyển json về mảng trong javascript
         let arr = JSON.parse('<?=$arr_json?>');
 
-        // Mảng các lá bài là tiên
+        // Mảng các lá bài là tây
         let tien = ['jack', 'king', 'queen'];
 
         // lấy từ đầu tiên của img
@@ -95,23 +95,12 @@
             let result = '';
             // tổng
             let total = 0;
-            // mảng 3 tiên
+            // mảng 3 tây
             let arr_t = [];
-            // mảng cù
-            let arr_in = [];
-
-            let tmp = '';
 
             for (i = 0; i < arr_2.length; i++) {
 
-                // check là cù
-                if (tmp == arr_2[i]) {
-                    arr_in.push(arr_2[i]);
-                }
-
-                tmp = arr_2[i];
-
-                // check là 3 tiên
+                // check là 3 tây
                 if (tien.includes(arr_2[i])) {
                     arr_t.push(arr_2[i]);
                 } else {
@@ -123,9 +112,7 @@
                 }
             }
             if (arr_t.length == 3) {
-                result = '3 tiên';
-            } else if (arr_in.length == 2) {
-                result = 'cù';
+                result = '3 tây';
             } else {
                 total = total.toString();
                 result = total.slice(-1);
