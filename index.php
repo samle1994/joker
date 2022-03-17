@@ -10,7 +10,14 @@
     <link rel='stylesheet' type='text/css' href='css/style.css'>
     <link rel='stylesheet' type='text/css' href='css/media.css'>
 
-    <?php
+
+
+</head>
+
+<body>
+    <div class="container">
+
+        <?php
 
         //Lấy danh sách tên hình trong thư mục
         $path    = 'img/card';
@@ -19,11 +26,6 @@
         $arr_json=json_encode($files);
         //print_r($arr_json);
     ?>
-
-</head>
-
-<body>
-    <div class="container">
 
         <main class="my-5">
             <div class="row justify-content-center">
@@ -87,23 +89,29 @@
 
         function sum() {
 
+            // mảng radom ra được 3
             let arr_2 = rand(3);
-            //console.log(arr_2);
+            // Kết quả trả về
             let result = '';
+            // tổng
             let total = 0;
+            // mảng 3 tiên
             let arr_t = [];
+            // mảng cù
             let arr_in = [];
 
             let tmp = '';
 
             for (i = 0; i < arr_2.length; i++) {
 
+                // check là cù
                 if (tmp == arr_2[i]) {
                     arr_in.push(arr_2[i]);
                 }
 
                 tmp = arr_2[i];
 
+                // check là 3 tiên
                 if (tien.includes(arr_2[i])) {
                     arr_t.push(arr_2[i]);
                 } else {
