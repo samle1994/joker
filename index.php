@@ -78,9 +78,8 @@
                     element.setAttribute("src", 'img/card/' + arr[tmp]);
                     // lấy từ đầu tiên của img
                     let name = get_number(arr[tmp]);
-                    // add vào mảng arr
+                    // add vào mảng arr_1
                     arr_1.push(name);
-
                     i++;
                 }
             }
