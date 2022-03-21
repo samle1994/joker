@@ -49,8 +49,8 @@
 
         <script>
         // Chuyển json về mảng trong javascript
-        let arr = JSON.parse('<?=$arr_json?>');
-        console.log(arr);
+        let arr_all = JSON.parse('<?=$arr_json?>');
+        console.log(arr_all);
         // Mảng các lá bài là tây
         let tien = ['jack', 'king', 'queen'];
 
@@ -67,8 +67,8 @@
         function rand(num) {
 
             let arr_1 = [];
-            while (arr_1.length < arr.length) {
-                let rand = Math.floor(Math.random() * arr.length);
+            while (arr_1.length < arr_all.length) {
+                let rand = Math.floor(Math.random() * arr_all.length);
                 if (!arr_1.includes(rand)) {
                     arr_1.push(rand);
                 }
@@ -84,37 +84,45 @@
 
             let arr_2 = rand();
 
-            let map = new Map();
+            let arr_news_2 = arr_2.map(x => arr_all[x]);
 
-            //console.log(arr_2);
+            console.log(arr_news_2);
+
+            let map = new Map();
 
             for (i = 0; i < songuoi; i++) {
                 k = i;
                 let arr_3 = [];
 
                 for (j = 0; j < sola; j++) {
-                    arr_3.push(arr_2[k]);
+                    let name = arr_news_2[k];
+                    arr_3.push(name);
                     k += songuoi;
                 }
-                map.set('num' + i, arr_3);
+                let key = {
+                    num: sum(arr_3),
+                    arr: arr_3
+                };
+                map.set('num' + i, key);
             }
-
+            console.log(map);
             return map;
 
         }
 
         let map = chiabai(3);
 
-        map.forEach(function(value, key) {
-            console.log(sum(value));
-        });
+        for (let value of map) {
+            console.log(value[0]);
+        }
 
-        let max = Math.max(value);
+        const array1 = [5, 12, 8, 130, 44];
 
+        const found = array1.filter(element => element > 10);
+
+        console.log(found);
 
         function sum(arr_4) {
-
-            console.log(arr_4);
 
             let result = '';
             // tổng
@@ -122,9 +130,9 @@
             // mảng 3 tây
             let arr_t = [];
 
-            for (i = 0; i < arr_4.length; i++) {
+            for (let i = 0; i < arr_4.length; i++) {
 
-                let val = get_number(arr[arr_4[i]]);
+                let val = get_number(arr_4[i]);
                 // check là 3 tây
                 if (tien.includes(val)) {
                     arr_t.push(val);
