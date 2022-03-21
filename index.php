@@ -111,14 +111,12 @@
         }
 
         let map = chiabai(3);
-
+        let map_news = [];
         for (let value of map) {
-            console.log(value[0]);
+            map_news.push(value[1]['num']);
         }
-
-        const array1 = [5, 12, 8, 130, 44];
-
-        const found = array1.filter(element => element > 10);
+        console.log(map_news);
+        const found = map_news.filter(element => element == 9);
 
         console.log(found);
 
