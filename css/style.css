@@ -49,3 +49,6 @@ a {
 #footer .copyright {
   background-color: #232323;
 }
+#form {
+  top: 10px;
+}
