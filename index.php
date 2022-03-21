@@ -27,7 +27,7 @@
         //print_r($arr_json);
     ?>
 
-        <main class="my-5">
+        <!-- <main class="my-5">
             <div class="row justify-content-center">
                 <div class="col-auto">
                     <img id="img-0" width="200" src="img/red_joker.png" alt="joker">
@@ -45,12 +45,12 @@
             <div class=" d-flex justify-content-center mt-3">
                 <button class="btn btn-danger">Số điểm là: <span id="result"></span></button>
             </div>
-        </main>
+        </main> -->
 
         <script>
         // Chuyển json về mảng trong javascript
         let arr = JSON.parse('<?=$arr_json?>');
-
+        console.log(arr);
         // Mảng các lá bài là tây
         let tien = ['jack', 'king', 'queen'];
 
@@ -67,46 +67,72 @@
         function rand(num) {
 
             let arr_1 = [];
-            let tmp = '';
-            let i = 0;
-            while (arr_1.length < num) {
+            while (arr_1.length < arr.length) {
                 let rand = Math.floor(Math.random() * arr.length);
-                if (rand != tmp) {
-                    tmp = rand;
-                    // doi 3 la bai
-                    element = document.getElementById('img-' + i);
-                    element.setAttribute("src", 'img/card/' + arr[tmp]);
-                    // lấy từ đầu tiên của img
-                    let name = get_number(arr[tmp]);
-                    // add vào mảng arr_1
-                    arr_1.push(name);
-                    i++;
+                if (!arr_1.includes(rand)) {
+                    arr_1.push(rand);
                 }
             }
             return arr_1;
         }
 
-        function sum() {
 
-            // mảng radom ra được 3
-            let arr_2 = rand(3);
-            // Kết quả trả về
+
+        function chiabai(songuoi) {
+
+            let sola = 3;
+
+            let arr_2 = rand();
+
+            let map = new Map();
+
+            //console.log(arr_2);
+
+            for (i = 0; i < songuoi; i++) {
+                k = i;
+                let arr_3 = [];
+
+                for (j = 0; j < sola; j++) {
+                    arr_3.push(arr_2[k]);
+                    k += songuoi;
+                }
+                map.set('num' + i, arr_3);
+            }
+
+            return map;
+
+        }
+
+        let map = chiabai(3);
+
+        map.forEach(function(value, key) {
+            console.log(sum(value));
+        });
+
+        let max = Math.max(value);
+
+
+        function sum(arr_4) {
+
+            console.log(arr_4);
+
             let result = '';
             // tổng
             let total = 0;
             // mảng 3 tây
             let arr_t = [];
 
-            for (i = 0; i < arr_2.length; i++) {
+            for (i = 0; i < arr_4.length; i++) {
 
+                let val = get_number(arr[arr_4[i]]);
                 // check là 3 tây
-                if (tien.includes(arr_2[i])) {
-                    arr_t.push(arr_2[i]);
+                if (tien.includes(val)) {
+                    arr_t.push(val);
                 } else {
-                    if (arr_2[i] == 'ace') {
+                    if (val == 'ace') {
                         total = total + 1;
                     } else {
-                        total = total + Number(arr_2[i]);
+                        total = total + Number(val);
                     }
                 }
             }
@@ -119,10 +145,10 @@
             return result;
         }
 
-        document.getElementById('btn-submit').onclick = function() {
-            let sum_s = sum();
-            document.getElementById('result').innerHTML = sum_s;
-        }
+        // document.getElementById('btn-submit').onclick = function() {
+        //     let sum_s = sum();
+        //     document.getElementById('result').innerHTML = sum_s;
+        // }
         </script>
     </div>
 </body>
